@@ -70,7 +70,7 @@ app.get('/short/:id', function(request, result) {
         } else {
             console.log('Connection established to', mongoUrl);
             var urls = db.collection('urls')
-            urls.find({"_id" : urlId}, {"original_url": 1})
+            urls.find({"_id" : ObjectId(urlId)}, {"original_url": 1})
                 .toArray(function(err, docs) {
                     if (err) throw err
                     db.close()
