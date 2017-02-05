@@ -15,7 +15,8 @@ function urlMiddleware(req, res, next) {
 */
 
 //(Focus on This Variable)
-var mongoUrl = 'mongodb://localhost:27017/short_urls';      
+//var mongoUrl = 'mongodb://localhost:27017/short_urls';      
+var mongoUrl = process.env.MONGOLAB_URI;
 //(Focus on This Variable)
 
 
@@ -34,7 +35,7 @@ app.get('/new', function(req, result) {
     } else if (!validUrl.isUri(longUrl)) {
         res.send({error: "Not a valid url"});
     } else {
-        var shortUrl = 'https://camper-api-project-aboorde.c9users.io/';
+        var shortUrl = 'https://node-url-shortener.herokuapp.com/';
         // Use connect method to connect to the Server
         MongoClient.connect(mongoUrl, function (err, db) {
           if (err) {
