@@ -35,7 +35,7 @@ app.get('/new', function(req, result) {
     } else if (!validUrl.isUri(longUrl)) {
         result.send({error: "Not a valid url"});
     } else {
-        var shortUrl = 'https://node-url-shortener.herokuapp.com/';
+        var shortUrl = 'https://node-url-shortener.herokuapp.com/short/';
         // Use connect method to connect to the Server
         MongoClient.connect(mongoUrl, function (err, db) {
           if (err) {
@@ -61,7 +61,7 @@ app.get('/new', function(req, result) {
     
     //res.send(req.params.longUrl)
 })
-app.get('/:id', function(request, result) {
+app.get('/short/:id', function(request, result) {
     var urlId = request.params.id;
     // Use connect method to connect to the Server
     MongoClient.connect(mongoUrl, function (err, db) {
