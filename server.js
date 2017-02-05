@@ -31,9 +31,9 @@ app.get('/new', function(req, result) {
     //res.send(req)
     var longUrl = req.query.url;
     if(!longUrl) {
-        res.send({error: "Need proper url parameter"})
+        result.send({error: "Need proper url parameter"})
     } else if (!validUrl.isUri(longUrl)) {
-        res.send({error: "Not a valid url"});
+        result.send({error: "Not a valid url"});
     } else {
         var shortUrl = 'https://node-url-shortener.herokuapp.com/';
         // Use connect method to connect to the Server
@@ -70,7 +70,7 @@ app.get('/:id', function(request, result) {
         } else {
             console.log('Connection established to', mongoUrl);
             var urls = db.collection('urls')
-            urls.find({"_id" : ObjectId(urlId)}, {"original_url": 1})
+            urls.find({"_id" : urlId}, {"original_url": 1})
                 .toArray(function(err, docs) {
                     if (err) throw err
                     db.close()
